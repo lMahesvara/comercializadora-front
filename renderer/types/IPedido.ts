@@ -8,4 +8,6 @@ export interface IPedido {
   fecha: string
   lugarEntrega: string
   pedidosProducto: IPedidosProducto[]
+  observaciones: string
+  pagado?: boolean
 }

@@ -16,7 +16,7 @@ const TablaProductosPedido = ({
     <Table>
       <TableHead headers={['id', 'nombre', 'precio', 'cantidad', 'total']} />
       <tbody>
-        {productosPedido.map((prodPed, i) => (
+        {productosPedido?.map((prodPed, i) => (
           <tr
             key={prodPed.producto.id}
             className={`border-b border-gray-700 ${

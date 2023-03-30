@@ -1,35 +1,26 @@
 import Table from './Table'
 import TableHead from './TableHead'
-import { IPedido } from '../../types/IPedido'
+import { ICliente } from '../../types/ICliente'
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
 import { useState } from 'react'
 import MensajeConfirmacion from '../shared/MensajeConfirmacion'
 import { currencyFormatter } from '../../utils/formatters'
 
-type TablaPedidosProps = {
-  pedidos: IPedido[]
-  deletePedido: (id: number) => void
-  editPedido: (id: number) => void
+type TablaClientesProps = {
+  clientes: ICliente[]
+  deleteCliente: (id: number) => void
+  editCliente: (cliente: ICliente) => void
 }
 
-const TablaPedidos = ({
-  pedidos,
-  deletePedido,
-  editPedido,
-}: TablaPedidosProps) => {
+const TablaClientes = ({
+  clientes,
+  editCliente,
+  deleteCliente,
+}: TablaClientesProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [idPedido, setIdPedido] = useState(0)
-
-  const dateFormatter = (date: string) => {
-    const dateObj = new Date(date)
-    const month = dateObj.getMonth() + 1
-    const day = dateObj.getDate()
-    const year = dateObj.getFullYear()
-    return `${day}/${month}/${year}`
-  }
-
+  const [idCliente, setIdCliente] = useState(0)
   const handleDelete = () => {
-    deletePedido(idPedido)
+    deleteCliente(idCliente)
     setIsModalOpen(false)
   }
 
@@ -39,45 +30,37 @@ const TablaPedidos = ({
         <MensajeConfirmacion
           accept={handleDelete}
           closeModal={() => setIsModalOpen(false)}
-          message='¿Está seguro que desea eliminar este pedido?'
+          message='¿Está seguro que desea eliminar este cliente?'
         />
       )}
       <Table>
-        <TableHead
-          headers={[
-            'id',
-            'cliente',
-            'total',
-            'fecha de entrega',
-            'Lugar de entrega',
-          ]}
-        />
+        <TableHead headers={['Id', 'Nombre', 'Apellido', 'Apodo', 'Adeudo']} />
         <tbody>
-          {pedidos.map((pedido, i) => (
+          {clientes.map((cliente, i) => (
             <tr
-              key={pedido.id}
+              key={cliente.id}
               className={`border-b border-gray-700 ${
                 i % 2 === 0
                   ? 'bg-[#446177] text-white'
                   : 'bg-[#eceff1] text-black'
               }`}
             >
-              <td className='px-6 py-4'>{pedido.id}</td>
-              <td className='px-6 py-4'>{pedido.cliente.apodo}</td>
+              <td className='px-6 py-4'>{cliente.id}</td>
+              <td className='px-6 py-4'>{cliente.nombre}</td>
+              <td className='px-6 py-4'>{cliente.apellido}</td>
+              <td className='px-6 py-4'>{cliente.apodo}</td>
               <td className='px-6 py-4'>
-                {currencyFormatter.format(pedido.precioTotal)}
+                {currencyFormatter.format(cliente.adeudo)}
               </td>
-              <td className='px-6 py-4'>{dateFormatter(pedido.fecha)}</td>
-              <td className='px-6 py-4'>{pedido.lugarEntrega}</td>
               <td className='px-6 py-4'>
                 <div className='flex items-center gap-4'>
-                  <button onClick={() => editPedido(pedido.id)}>
+                  <button onClick={() => editCliente(cliente)}>
                     <AiOutlineEdit className='w-6 h-6' />
                   </button>
                   <button
                     onClick={() => {
                       setIsModalOpen(true)
-                      setIdPedido(pedido.id)
+                      setIdCliente(cliente.id)
                     }}
                   >
                     <AiOutlineDelete className='w-6 h-6' />
@@ -92,4 +75,4 @@ const TablaPedidos = ({
   )
 }
 
-export default TablaPedidos
+export default TablaClientes

@@ -8,37 +8,19 @@ type TablaProductosProps = {
   addFunction: (producto: IProducto) => void
 }
 
-const initialState: IProducto[] = [
-  {
-    id: 1,
-    nombre: 'Producto 1',
-    precio: 1000,
-    cantidad: 10,
-    cantidadApartada: 0,
-  },
-  {
-    id: 2,
-    nombre: 'Producto 2',
-    precio: 2000,
-    cantidad: 10,
-    cantidadApartada: 0,
-  },
-  {
-    id: 3,
-    nombre: 'Producto 3',
-    precio: 3000,
-    cantidad: 10,
-    cantidadApartada: 0,
-  },
-]
-
-const TablaProductos = ({
-  productos = initialState,
-  addFunction,
-}: TablaProductosProps) => {
+const TablaProductos = ({ productos, addFunction }: TablaProductosProps) => {
+  console.log(
+    productos.forEach(producto =>
+      console.log(
+        `${producto.cantidadApartada} ${producto.cantidad} ${
+          producto.cantidadApartada - producto.cantidad
+        } `
+      )
+    )
+  )
   return (
     <Table>
-      <TableHead headers={['id', 'nombre', 'precio']} />
+      <TableHead headers={['id', 'nombre', 'precio', 'cantidad']} />
       <tbody>
         {productos.map((producto, i) => (
           <tr
@@ -52,6 +34,9 @@ const TablaProductos = ({
             <td className='px-6 py-4'>{producto.id}</td>
             <td className='px-6 py-4'>{producto.nombre}</td>
             <td className='px-6 py-4'>{producto.precio}</td>
+            <td className='px-6 py-4'>
+              {producto.cantidad - producto.cantidadApartada}
+            </td>
             <td className='px-6 py-4'>
               <div className='flex items-center gap-4'>
                 <button onClick={() => addFunction(producto)}>

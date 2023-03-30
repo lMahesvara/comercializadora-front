@@ -1,26 +1,23 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import Button from '../components/Button'
 
 function Home() {
+  const router = useRouter()
   return (
-    <React.Fragment>
-      <div className='grid w-full text-2xl text-center grid-col-1'>
-        <img className='ml-auto mr-auto' src='/images/logo.png' />
-        <span>⚡ Electron ⚡</span>
-        <span>+</span>
-        <span>Next.js</span>
-        <span>+</span>
-        <span>tailwindcss</span>
-        <span>=</span>
-        <span>💕 </span>
+    <main className='flex w-full h-screen divide-x-4 divide-white'>
+      <div className='flex items-center justify-center w-3/5 gap-4'>
+        <Button onClick={() => router.push('/pedidos')}>Pedidos</Button>
+        <Button onClick={() => router.push('/clientes')}>Clientes</Button>
+        <Button onClick={() => router.push('/login')}>Login</Button>
+        <Button onClick={() => router.push('/ventas')}>ventas</Button>
       </div>
-      <div className='flex flex-wrap justify-center w-full mt-1'>
-        <Link href='/administrar-pedidos'>
-          <a className='btn-blue'>Go to next page</a>
-        </Link>
+      <div className='flex items-center justify-center w-2/5 p-16'>
+        <img className='w-[400px] ' src='/images/logo.png' />
       </div>
-    </React.Fragment>
+    </main>
   )
 }
 

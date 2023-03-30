@@ -10,7 +10,7 @@ export class FachadaControlador implements IFachadaControlador {
 
   async getProductos(): Promise<IProducto[]> {
     try {
-      const { data } = await axios.get(`${this.URI}/producto`)
+      const { data } = await axios.get(`${this.URI}/productos`)
 
       return data
     } catch (error) {
@@ -20,7 +20,7 @@ export class FachadaControlador implements IFachadaControlador {
   }
   async getClientes(): Promise<ICliente[]> {
     try {
-      const { data } = await axios.get(`${this.URI}/cliente`)
+      const { data } = await axios.get(`${this.URI}/clientes`)
 
       return data
     } catch (error) {
@@ -30,7 +30,7 @@ export class FachadaControlador implements IFachadaControlador {
   }
   async getPedidos(): Promise<IPedido[]> {
     try {
-      const { data } = await axios.get(`${this.URI}/pedido`)
+      const { data } = await axios.get(`${this.URI}/pedidos`)
 
       return data
     } catch (error) {
@@ -39,10 +39,28 @@ export class FachadaControlador implements IFachadaControlador {
     }
   }
 
+  async getPedido(id: number): Promise<IPedido> {
+    try {
+      const { data } = await axios.get(`${this.URI}/pedidos/${id}`)
+      return data
+    } catch (error) {
+      console.log(error)
+      return {} as IPedido
+    }
+  }
+
   async postPedido(pedido: IPedido): Promise<void> {
     try {
       console.log(pedido)
-      await axios.post(`${this.PROXY_URI}/pedido`, pedido)
+      await axios.post(`${this.URI}/pedidos`, pedido)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async postCliente(cliente: ICliente): Promise<void> {
+    try {
+      await axios.post(`${this.URI}/clientes`, cliente)
     } catch (error) {
       console.log(error)
     }
@@ -50,7 +68,15 @@ export class FachadaControlador implements IFachadaControlador {
 
   async putPedido(pedido: IPedido): Promise<void> {
     try {
-      await axios.put(`${this.URI}/pedido/${pedido.id}`, pedido)
+      await axios.put(`${this.URI}/pedidos`, pedido)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async putCliente(cliente: ICliente): Promise<void> {
+    try {
+      await axios.put(`${this.URI}/clientes`, cliente)
     } catch (error) {
       console.log(error)
     }
@@ -58,7 +84,15 @@ export class FachadaControlador implements IFachadaControlador {
 
   async deletePedido(id: number): Promise<void> {
     try {
-      await axios.delete(`${this.PROXY_URI}/pedido/${id}`)
+      await axios.delete(`${this.URI}/pedidos/${id}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async deleteCliente(id: number): Promise<void> {
+    try {
+      await axios.delete(`${this.URI}/clientes/${id}`)
     } catch (error) {
       console.log(error)
     }

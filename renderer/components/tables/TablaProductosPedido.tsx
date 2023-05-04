@@ -5,16 +5,21 @@ import { IPedidosProducto } from '../../types/IPedidosProducto'
 
 type TablaProductosPedidoProps = {
   productosPedido: IPedidosProducto[]
-  deleteFunction: (id: number) => void
+  deleteFunction?: (id: number) => void
+  actions?: boolean
 }
 
 const TablaProductosPedido = ({
   productosPedido,
   deleteFunction,
+  actions,
 }: TablaProductosPedidoProps) => {
   return (
     <Table>
-      <TableHead headers={['id', 'nombre', 'precio', 'cantidad', 'total']} />
+      <TableHead
+        headers={['id', 'nombre', 'precio', 'cantidad', 'total']}
+        actions={actions}
+      />
       <tbody>
         {productosPedido?.map((prodPed, i) => (
           <tr
@@ -32,13 +37,15 @@ const TablaProductosPedido = ({
             <td className='px-6 py-4'>
               {prodPed.cantidad * prodPed.producto.precio}
             </td>
-            <td className='px-6 py-4'>
-              <div className='flex items-center gap-4'>
-                <button onClick={() => deleteFunction(prodPed.producto.id)}>
-                  <AiOutlineDelete className='w-6 h-6' />
-                </button>
-              </div>
-            </td>
+            {!actions && (
+              <td className='px-6 py-4'>
+                <div className='flex items-center gap-4'>
+                  <button onClick={() => deleteFunction(prodPed.producto.id)}>
+                    <AiOutlineDelete className='w-6 h-6' />
+                  </button>
+                </div>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

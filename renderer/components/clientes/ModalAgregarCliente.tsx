@@ -88,9 +88,9 @@ const ModalAgregarCliente = ({ toggle }: ModalAgregarClienteProps) => {
               className='p-2 text-sm bg-[#ededed] text-black rounded-lg'
             />
           </div>
-          <div className='flex items-center justify-between mt-2'>
-            <Button onClick={toggle}>Cancelar</Button>
+          <div className='flex flex-row-reverse items-center justify-between mt-2'>
             <Button onClick={agregarCliente}>Agregar</Button>
+            <Button onClick={toggle}>Cancelar</Button>
           </div>
         </form>
       </div>

@@ -47,9 +47,9 @@ const TablaPedidos = ({
           headers={[
             'id',
             'cliente',
-            'total',
             'fecha de entrega',
             'Lugar de entrega',
+            'total',
           ]}
         />
         <tbody>
@@ -64,11 +64,11 @@ const TablaPedidos = ({
             >
               <td className='px-6 py-4'>{pedido.id}</td>
               <td className='px-6 py-4'>{pedido.cliente.apodo}</td>
+              <td className='px-6 py-4'>{dateFormatter(pedido.fecha)}</td>
+              <td className='px-6 py-4'>{pedido.lugarEntrega}</td>
               <td className='px-6 py-4'>
                 {currencyFormatter.format(pedido.precioTotal)}
               </td>
-              <td className='px-6 py-4'>{dateFormatter(pedido.fecha)}</td>
-              <td className='px-6 py-4'>{pedido.lugarEntrega}</td>
               <td className='px-6 py-4'>
                 <div className='flex items-center gap-4'>
                   <button onClick={() => editPedido(pedido.id)}>

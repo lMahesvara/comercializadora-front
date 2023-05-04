@@ -78,10 +78,16 @@ const AgregarPedido = ({ productos, clientes }: AgregarPedidoProps) => {
       fecha,
       pedidosProducto,
       precioTotal,
+      saldo: precioTotal,
       observaciones,
       pagado: false,
     }
     console.log(JSON.stringify(pedido))
+
+    cliente.adeudo += precioTotal
+    fachadaControlador.putCliente(cliente).then(_ => {
+      console.log('Cliente actualizado')
+    })
 
     fachadaControlador.postPedido(pedido).then(_ => {
       toast.success('Pedido agregado')

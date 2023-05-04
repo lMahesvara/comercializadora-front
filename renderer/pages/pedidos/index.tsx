@@ -6,6 +6,7 @@ import { FachadaControlador } from '../../logic/fachadaControlador'
 import { IPedido } from '../../types/IPedido'
 import TablaPedidos from '../../components/tables/TablaPedidos'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 type AdministrarPedidosProps = {
   pedidos: IPedido[]
@@ -26,9 +27,8 @@ function AdministrarPedidos({ pedidos }: AdministrarPedidosProps) {
   const handleDelete = (id: number) => {
     const facControlador: IFachadaControlador = new FachadaControlador()
     facControlador.deletePedido(id).then(_ => {
-      console.log('Pedido eliminado')
-
-      router.push('/pedidos')
+      toast.success('Pedido eliminado correctamente')
+      router.reload()
     })
   }
 
@@ -36,7 +36,6 @@ function AdministrarPedidos({ pedidos }: AdministrarPedidosProps) {
     const pedidosFiltrados = pedidos.filter(pedido => {
       return pedido.cliente.apodo.toLowerCase().includes(cliente.toLowerCase())
     })
-
     setPedidosFiltrados(pedidosFiltrados)
   }
 

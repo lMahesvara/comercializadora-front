@@ -97,6 +97,7 @@ const EditarPedido = ({ pedido, productos, clientes }: EditarPedidoProps) => {
       precioTotal,
       observaciones,
       pagado: pedido.pagado,
+      saldo: pedido.saldo,
     }
     console.log(JSON.stringify(actualizarPedido))
 

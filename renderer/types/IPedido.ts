@@ -5,6 +5,7 @@ export interface IPedido {
   id?: number
   cliente: ICliente
   precioTotal: number
+  saldo: number
   fecha: string
   lugarEntrega: string
   pedidosProducto: IPedidosProducto[]

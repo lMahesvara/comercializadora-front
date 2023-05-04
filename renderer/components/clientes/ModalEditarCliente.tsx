@@ -26,6 +26,7 @@ const ModalEditarCliente = ({ toggle, cliente }: ModalEditarClienteProps) => {
         nombre: data.nombre as string,
         apellido: data.apellido as string,
         apodo: data.apodo as string,
+        adeudo: cliente.adeudo,
       }
       fachadaControlador.putCliente(updateCliente).then(_ => {
         toast.success('Cliente editado!')

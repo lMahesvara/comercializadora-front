@@ -3,6 +3,7 @@ import { ICliente } from '../types/ICliente'
 import { IPedido } from '../types/IPedido'
 import { IProducto } from '../types/IProducto'
 import { IFachadaControlador } from './IFachadaControlador'
+import { IVenta } from '../types/IVenta'
 
 export class FachadaControlador implements IFachadaControlador {
   URI = process.env.API_URL
@@ -68,6 +69,14 @@ export class FachadaControlador implements IFachadaControlador {
   async postProducto(producto: IProducto): Promise<void> {
     try {
       await axios.post(`${this.URI}/productos`, producto)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async postVenta(venta: IVenta): Promise<void> {
+    try {
+      await axios.post(`${this.URI}/ventas`, venta)
     } catch (error) {
       console.log(error)
     }

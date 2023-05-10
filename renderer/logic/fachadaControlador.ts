@@ -6,7 +6,6 @@ import { IFachadaControlador } from './IFachadaControlador'
 
 export class FachadaControlador implements IFachadaControlador {
   URI = process.env.API_URL
-  PROXY_URI = process.env.PROXY_URL
 
   async getProductos(): Promise<IProducto[]> {
     try {
@@ -66,6 +65,14 @@ export class FachadaControlador implements IFachadaControlador {
     }
   }
 
+  async postProducto(producto: IProducto): Promise<void> {
+    try {
+      await axios.post(`${this.URI}/productos`, producto)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   async putPedido(pedido: IPedido): Promise<void> {
     try {
       await axios.put(`${this.URI}/pedidos`, pedido)
@@ -77,6 +84,14 @@ export class FachadaControlador implements IFachadaControlador {
   async putCliente(cliente: ICliente): Promise<void> {
     try {
       await axios.put(`${this.URI}/clientes`, cliente)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async putProducto(producto: IProducto): Promise<void> {
+    try {
+      await axios.put(`${this.URI}/productos`, producto)
     } catch (error) {
       console.log(error)
     }

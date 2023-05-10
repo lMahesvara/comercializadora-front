@@ -9,8 +9,10 @@ export interface IFachadaControlador {
   getPedido(id: number): Promise<IPedido>
   postPedido(pedido: IPedido): Promise<void>
   postCliente(cliente: ICliente): Promise<void>
+  postProducto(producto: IProducto): Promise<void>
   putPedido(pedido: IPedido): Promise<void>
   putCliente(cliente: ICliente): Promise<void>
+  putProducto(producto: IProducto): Promise<void>
   deletePedido(id: number): Promise<void>
   deleteCliente(id: number): Promise<void>
 }

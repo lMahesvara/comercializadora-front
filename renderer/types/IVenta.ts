@@ -4,5 +4,5 @@ export interface IVenta {
   id?: number
   precioVenta: number
   fechaVenta: string
-  pedido: IPedido
+  idPedido: IPedido
 }

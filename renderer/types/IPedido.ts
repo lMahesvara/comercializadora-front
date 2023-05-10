@@ -1,5 +1,6 @@
 import { ICliente } from './ICliente'
 import { IPedidosProducto } from './IPedidosProducto'
+import { IVenta } from './IVenta'
 
 export interface IPedido {
   id?: number
@@ -11,4 +12,5 @@ export interface IPedido {
   pedidosProducto: IPedidosProducto[]
   observaciones: string
   pagado?: boolean
+  ventas?: IVenta[]
 }

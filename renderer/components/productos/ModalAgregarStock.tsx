@@ -59,7 +59,7 @@ const ModalAgregarStock = ({ toggle, producto }: ModalAgregarStockProps) => {
           <div className='flex flex-col gap-2'>
             <label htmlFor='cantidad'>Cantidad (Kg)</label>
             <input
-              type='text'
+              type='number'
               id='cantidad'
               name='cantidad'
               className='p-2 text-sm bg-[#ededed] text-black rounded-lg'

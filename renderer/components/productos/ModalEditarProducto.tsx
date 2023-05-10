@@ -78,7 +78,7 @@ const ModalEditarProducto = ({
           <div className='flex flex-col gap-2'>
             <label htmlFor='precio'>Precio</label>
             <input
-              type='text'
+              type='number'
               id='precio'
               name='precio'
               className='p-2 text-sm bg-[#ededed] text-black rounded-lg'

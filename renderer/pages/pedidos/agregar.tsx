@@ -84,11 +84,6 @@ const AgregarPedido = ({ productos, clientes }: AgregarPedidoProps) => {
     }
     console.log(JSON.stringify(pedido))
 
-    cliente.adeudo += precioTotal
-    fachadaControlador.putCliente(cliente).then(_ => {
-      console.log('Cliente actualizado')
-    })
-
     fachadaControlador.postPedido(pedido).then(_ => {
       toast.success('Pedido agregado')
       router.push('/pedidos')

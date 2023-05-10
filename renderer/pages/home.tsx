@@ -10,6 +10,7 @@ function Home() {
         <Button onClick={() => router.push('/clientes')}>Clientes</Button>
         <Button onClick={() => router.push('/login')}>Login</Button>
         <Button onClick={() => router.push('/ventas')}>ventas</Button>
+        <Button onClick={() => router.push('/productos')}>Productos</Button>
       </div>
       <div className='flex items-center justify-center w-2/5 p-16'>
         <img className='w-[400px] ' src='/images/logo.png' />

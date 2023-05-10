@@ -1,26 +1,23 @@
 import Table from './Table'
 import TableHead from './TableHead'
 import { IProducto } from '../../types/IProducto'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlinePlus, AiOutlineEdit } from 'react-icons/ai'
+import { currencyFormatter } from '../../utils/formatters'
 
 type TablaProductosProps = {
   productos?: IProducto[]
-  addFunction: (producto: IProducto) => void
+  addFunction?: (producto: IProducto) => void
+  editFunction?: (producto: IProducto) => void
 }
 
-const TablaProductos = ({ productos, addFunction }: TablaProductosProps) => {
-  console.log(
-    productos.forEach(producto =>
-      console.log(
-        `${producto.cantidadApartada} ${producto.cantidad} ${
-          producto.cantidadApartada - producto.cantidad
-        } `
-      )
-    )
-  )
+const TablaProductos = ({
+  productos,
+  addFunction,
+  editFunction,
+}: TablaProductosProps) => {
   return (
     <Table>
-      <TableHead headers={['id', 'nombre', 'precio', 'cantidad']} />
+      <TableHead headers={['id', 'nombre', 'precio (Kg)', 'cantidad (Kg)']} />
       <tbody>
         {productos.map((producto, i) => (
           <tr
@@ -33,15 +30,24 @@ const TablaProductos = ({ productos, addFunction }: TablaProductosProps) => {
           >
             <td className='px-6 py-4'>{producto.id}</td>
             <td className='px-6 py-4'>{producto.nombre}</td>
-            <td className='px-6 py-4'>{producto.precio}</td>
+            <td className='px-6 py-4'>
+              {currencyFormatter.format(producto.precio)}
+            </td>
             <td className='px-6 py-4'>
               {producto.cantidad - producto.cantidadApartada}
             </td>
             <td className='px-6 py-4'>
               <div className='flex items-center gap-4'>
-                <button onClick={() => addFunction(producto)}>
-                  <AiOutlinePlus className='w-6 h-6' />
-                </button>
+                {addFunction && (
+                  <button onClick={() => addFunction(producto)}>
+                    <AiOutlinePlus className='w-6 h-6' />
+                  </button>
+                )}
+                {editFunction && (
+                  <button onClick={() => editFunction(producto)}>
+                    <AiOutlineEdit className='w-6 h-6' />
+                  </button>
+                )}
               </div>
             </td>
           </tr>

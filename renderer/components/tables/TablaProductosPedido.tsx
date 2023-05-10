@@ -2,6 +2,7 @@ import Table from './Table'
 import TableHead from './TableHead'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { IPedidosProducto } from '../../types/IPedidosProducto'
+import { currencyFormatter } from '../../utils/formatters'
 
 type TablaProductosPedidoProps = {
   productosPedido: IPedidosProducto[]
@@ -32,10 +33,14 @@ const TablaProductosPedido = ({
           >
             <td className='px-6 py-4'>{prodPed.producto.id}</td>
             <td className='px-6 py-4'>{prodPed.producto.nombre}</td>
-            <td className='px-6 py-4'>{prodPed.producto.precio}</td>
+            <td className='px-6 py-4'>
+              {currencyFormatter.format(prodPed.producto.precio)}
+            </td>
             <td className='px-6 py-4'>{prodPed.cantidad}</td>
             <td className='px-6 py-4'>
-              {prodPed.cantidad * prodPed.producto.precio}
+              {currencyFormatter.format(
+                prodPed.cantidad * prodPed.producto.precio
+              )}
             </td>
             {!actions && (
               <td className='px-6 py-4'>

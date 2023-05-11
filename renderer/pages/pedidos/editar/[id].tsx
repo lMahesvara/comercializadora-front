@@ -26,6 +26,8 @@ const EditarPedido = ({ pedido, productos, clientes }: EditarPedidoProps) => {
   )
   const [productosFiltrados, setProductos] = useState<IProducto[]>(productos)
 
+  const isEditable = pedido.saldo === pedido.precioTotal
+
   const formRef = useRef(null)
   const router = useRouter()
 
@@ -66,7 +68,8 @@ const EditarPedido = ({ pedido, productos, clientes }: EditarPedidoProps) => {
 
     const fachadaControlador: IFachadaControlador = new FachadaControlador()
 
-    const cliente: ICliente = clientes[Number(data.cliente) - 1]
+    const cliente: ICliente =
+      clientes[Number(data.cliente) - 1] || pedido.cliente
     const lugarEntrega = data.lugarEntrega as string
     const fecha = data.fechaEntrega as string
     const pedidosProducto = productosPedidos.map(producto => {
@@ -133,8 +136,8 @@ const EditarPedido = ({ pedido, productos, clientes }: EditarPedidoProps) => {
       toast.error('Seleccione una fecha de entrega')
       return false
     }
-    if (date < new Date()) {
-      toast.error('La fecha de entrega no puede ser menor a la fecha actual')
+    if (date < new Date(pedido.fecha)) {
+      toast.error('La fecha de entrega no puede ser menor a la fecha anterior')
       return false
     }
     if (data.lugarEntrega === '0') {
@@ -149,6 +152,10 @@ const EditarPedido = ({ pedido, productos, clientes }: EditarPedidoProps) => {
   }
 
   const openModal = () => {
+    if (!isEditable) {
+      toast.error('No se puede editar un pedido que ya ha sido pagado')
+      return
+    }
     setIsOpen(true)
   }
 
@@ -192,6 +199,7 @@ const EditarPedido = ({ pedido, productos, clientes }: EditarPedidoProps) => {
                   className='w-2/3 p-2 text-sm text-black placeholder-gray-400 bg-[#ededed] border border-gray-600 rounded-lg '
                   name='cliente'
                   defaultValue={pedido.cliente.id}
+                  disabled={!isEditable}
                 >
                   <option value='0'>Seleccione un cliente</option>
                   {clientes.map((cliente, i) => (
@@ -260,6 +268,7 @@ const EditarPedido = ({ pedido, productos, clientes }: EditarPedidoProps) => {
               <TablaProductosPedido
                 productosPedido={productosPedidos}
                 deleteFunction={removeProduct}
+                actions={!isEditable}
               />
             </div>
             <div>

@@ -65,7 +65,6 @@ const ModalAgregarStock = ({ toggle, producto }: ModalAgregarStockProps) => {
               className='p-2 text-sm bg-[#ededed] text-black rounded-lg'
               autoFocus
               onKeyDown={e => {
-                if (e.key === 'Enter') agregarStock()
                 if (e.key === 'Escape') toggle()
               }}
             />

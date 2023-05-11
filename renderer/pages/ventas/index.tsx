@@ -25,11 +25,10 @@ function AdministrarVentas({ pedidos }: AdministrarVentasProps) {
   }
 
   const handleSearch = (cliente: string) => {
-    /* const pedidosFiltrados = pedidos.filter(pedido => {
+    const ventasFiltradas = pedidos.filter(pedido => {
       return pedido.cliente.apodo.toLowerCase().includes(cliente.toLowerCase())
     })
-
-    setPedidosFiltrados(pedidosFiltrados) */
+    setVentasFiltradas(ventasFiltradas)
   }
 
   return (
@@ -49,7 +48,7 @@ function AdministrarVentas({ pedidos }: AdministrarVentasProps) {
                 type='text'
                 id='table-search'
                 className='block p-2 pl-10 text-sm text-black bg-[#ededed] border border-gray-600 rounded-lg w-80 bg-gray-5'
-                placeholder='Buscar pedido por cliente...'
+                placeholder='Buscar pedido por cliente'
                 onChange={e => handleSearch(e.target.value)}
               />
             </div>

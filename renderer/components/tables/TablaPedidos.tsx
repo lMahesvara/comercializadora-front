@@ -50,6 +50,7 @@ const TablaPedidos = ({
             'fecha de entrega',
             'Lugar de entrega',
             'total',
+            'pagado',
           ]}
         />
         <tbody>
@@ -68,6 +69,9 @@ const TablaPedidos = ({
               <td className='px-6 py-4'>{pedido.lugarEntrega}</td>
               <td className='px-6 py-4'>
                 {currencyFormatter.format(pedido.precioTotal)}
+              </td>
+              <td className='px-6 py-4'>
+                {pedido.pagado ? 'Pagado' : 'No pagado'}
               </td>
               <td className='px-6 py-4'>
                 <div className='flex items-center gap-4'>

@@ -72,6 +72,8 @@ const AgregarPedido = ({ productos, clientes }: AgregarPedidoProps) => {
     const precioTotal = getTotal()
     const observaciones = data.observaciones as string
 
+    cliente.pedidos = undefined
+
     const pedido: IPedido = {
       cliente,
       lugarEntrega,

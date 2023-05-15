@@ -95,7 +95,7 @@ const index = ({ productos }: AdministrarProductosProps) => {
             <TablaProductos
               productos={productosFiltrados}
               editFunction={editProducto}
-              addFunction={addStock}
+              /* addFunction={addStock} */
             />
           </div>
         </section>

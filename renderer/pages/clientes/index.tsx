@@ -41,10 +41,15 @@ const index = ({ clientes }: AdministrarClientesProps) => {
 
   const deleteCliente = (id: number) => {
     const facControlador: IFachadaControlador = new FachadaControlador()
-    facControlador.deleteCliente(id).then(_ => {
-      toast.success('Cliente eliminado correctamente')
-      router.reload()
-    })
+    facControlador
+      .deleteCliente(id)
+      .then(_ => {
+        toast.success('Cliente eliminado correctamente')
+        router.reload()
+      })
+      .catch(err => {
+        toast.error(err.message)
+      })
   }
 
   const filterByApodo = (apodo: string) => {

@@ -111,14 +111,17 @@ export class FachadaControlador implements IFachadaControlador {
       await axios.delete(`${this.URI}/pedidos/${id}`)
     } catch (error) {
       console.log(error)
+      throw new Error('No se puede eliminar el pedido')
     }
   }
 
   async deleteCliente(id: number): Promise<void> {
     try {
-      await axios.delete(`${this.URI}/clientes/${id}`)
+      await axios.delete(`${this.URI}/clientes/${id}`).then(res => {
+        console.log(res.status)
+      })
     } catch (error) {
-      console.log(error)
+      throw new Error('No se puede eliminar el cliente')
     }
   }
 }

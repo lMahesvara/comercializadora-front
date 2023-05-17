@@ -26,10 +26,15 @@ function AdministrarPedidos({ pedidos }: AdministrarPedidosProps) {
 
   const handleDelete = (id: number) => {
     const facControlador: IFachadaControlador = new FachadaControlador()
-    facControlador.deletePedido(id).then(_ => {
-      toast.success('Pedido eliminado correctamente')
-      router.reload()
-    })
+    facControlador
+      .deletePedido(id)
+      .then(_ => {
+        toast.success('Pedido eliminado correctamente')
+        router.reload()
+      })
+      .catch(err => {
+        toast.error(err.message)
+      })
   }
 
   const handleSearch = (cliente: string) => {

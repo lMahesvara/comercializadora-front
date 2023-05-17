@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Home Camaronciza</title>
+        <title>Comercializadora Nuñez C.</title>
       </Head>
       <ToastContainer
         position='top-center'

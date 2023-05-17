@@ -17,8 +17,11 @@ const TablaProductos = ({
 }: TablaProductosProps) => {
   return (
     <Table>
-      <TableHead headers={['id', 'nombre', 'precio (Kg)', 'cantidad (Kg)']} />
-      <tbody>
+      <TableHead
+        headers={['id', 'nombre', 'precio (Kg)', 'cantidad (Kg)']}
+        center
+      />
+      <tbody className='text-center'>
         {productos.map((producto, i) => (
           <tr
             key={producto.id}

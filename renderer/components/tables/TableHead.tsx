@@ -1,11 +1,14 @@
 type TableHeadProps = {
   headers: string[]
   actions?: boolean
+  center?: boolean
 }
 
-const TableHead = ({ headers, actions }: TableHeadProps) => {
+const TableHead = ({ headers, actions, center }: TableHeadProps) => {
+  const align = center ? 'text-center' : ''
+
   return (
-    <thead className='text-xs text-white uppercase bg-[#374c5e]'>
+    <thead className={`text-xs text-white uppercase bg-[#374c5e] ${align}`}>
       <tr>
         {headers.map(header => (
           <th scope='col' className='px-6 py-3' key={header}>
